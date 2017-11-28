@@ -13,10 +13,6 @@ django postman
 
 Service for email and sms
 
-Documentation
--------------
-
-The full documentation is at https://django-postman.readthedocs.io.
 
 Quickstart
 ----------
