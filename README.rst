@@ -23,7 +23,7 @@ Quickstart
 
 Install django postman::
 
-    pip install django-postman
+    pip install git+https://github.com/ashish2py/django-postman
 
 Add it to your `INSTALLED_APPS`:
 
