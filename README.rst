@@ -40,7 +40,7 @@ Change your `settings.py`:
 .. code-block:: python
 
     # POSTMAIL_EMAILER
-    EMAIL_BACKEND = 'postman.emailer.EmailBackend'
+    EMAIL_BACKEND = 'postman.email_service.EmailBackend'
     
     # TEST Server http://testing.postman.zaya.in
     POSTMAN_HOST = '<zaya-postman-service-hostname>'
