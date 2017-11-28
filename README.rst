@@ -31,38 +31,57 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'postman.apps.PostmanConfig',
+        'postman',
         ...
     )
 
-Add django postman's URL patterns:
+Change your `settings.py`:
 
 .. code-block:: python
 
-    from postman import urls as postman_urls
+    # POSTMAIL_EMAILER
+    EMAIL_BACKEND = 'postman.emailer.EmailBackend'
+    
+    # TEST Server http://testing.postman.zaya.in
+    POSTMAN_HOST = '<zaya-postman-service-hostname>'
+    POSTMAN_EMAIL_ROUTE = '/api/v1/services/email/'
+    POSTMAN_SMS_ROUTE = '/api/v1/services/email/'
+    POSTMAN_AUTHKEY = '<your-postman-auth-key>' 
 
+How to use EmailBackend:
 
-    urlpatterns = [
-        ...
-        url(r'^', include(postman_urls)),
-        ...
-    ]
+.. code-block:: python
 
+    from django.core.mail import send_mail
+    
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'from@example.com',
+        ['to@example.com'],
+        fail_silently=False,
+    )
+
+How to use SMSBackend:
+
+.. code-block:: python
+
+    from postman import sms_backend
+    sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>)
+    
+    # PHONE_NUMBER : accepts <country_code>
+    
+    Optional Parameters
+    # SENDER : SMSProvider's SENDER_ID
+    # ROUTER : PROMOTIONAL or TRANSACTIONAL
+    
+    sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>, <SENDER_ID>, <ROUTER>)
+    
 Features
 --------
 
-* TODO
-
-Running Tests
--------------
-
-Does the code actually work?
-
-::
-
-    source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install tox
-    (myenv) $ tox
+* overrides django's send_mail and uses zaya's POSTMAN service to send email
+* use POSTMAN for send messages
 
 Credits
 -------
