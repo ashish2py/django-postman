@@ -40,7 +40,7 @@ Change your `settings.py`:
     
     POSTMAN_HOST = '<zaya-postman-service-hostname>'
     POSTMAN_EMAIL_ROUTE = '/api/v1/services/email/'
-    POSTMAN_SMS_ROUTE = '/api/v1/services/email/'
+    POSTMAN_SMS_ROUTE = '/api/v1/services/sms/'
     POSTMAN_AUTHKEY = '<your-postman-auth-key>' 
 
 How to use EmailBackend:
