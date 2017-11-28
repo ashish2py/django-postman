@@ -36,11 +36,12 @@ class SMSBackend(BaseBackend):
     def send_messages(self, reciever, message, sender_id=None, route=None):
 
         # validate phone number
+        reciever = str(reciever)
         self.validate_phone_number(reciever)
 
         postman_body = {
             "receiver": {
-                "contact": str(reciever)
+                "contact": reciever
             },
             "data": {
                 "body": message
