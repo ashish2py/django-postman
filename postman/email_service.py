@@ -40,7 +40,7 @@ class EmailBackend(BaseEmailBackend):
 
     def _send_email_to_postman(self, postman_body):
         request = requests.post(self.email_route, json=postman_body, headers=self.headers)
-        if request.status_code in 200:
+        if request.status_code == 201:
             return True
         return False
 

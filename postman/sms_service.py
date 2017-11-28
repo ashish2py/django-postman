@@ -21,8 +21,8 @@ class SMSBackend(BaseBackend):
         return False
 
     def _send_msg_to_postman(self, postman_body):
-        request = requests.post(self.email_route, json=postman_body, headers=self.headers)
-        if request.status_code in 200:
+        request = requests.post(self.sms_route, json=postman_body, headers=self.headers)
+        if request.status_code == 201:
             return True
         return False
 
@@ -41,4 +41,5 @@ class SMSBackend(BaseBackend):
         }
 
         # send message to postman
-        self._send_msg_to_postman(postman_body)
+        response = self._send_msg_to_postman(postman_body)
+        print('SUCCESS' if response else 'FAILED')
