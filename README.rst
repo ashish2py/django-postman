@@ -35,61 +35,53 @@ Add it to your `INSTALLED_APPS`:
         ...
     )
 
-Change your settings.py:
+Change your `settings.py`:
 
 .. code-block:: python
 
-# POSTMAIL_EMAILER
-EMAIL_BACKEND = 'postman.emailer.EmailBackend'
-
-# TEST Server http://testing.postman.zaya.in
-POSTMAN_HOST = '<zaya-postman-service-hostname>'
-POSTMAN_EMAIL_ROUTE = '/api/v1/services/email/'
-POSTMAN_SMS_ROUTE = '/api/v1/services/email/'
-POSTMAN_AUTHKEY = '<your-postman-auth-key>' 
+    # POSTMAIL_EMAILER
+    EMAIL_BACKEND = 'postman.email_service.EmailBackend'
+    
+    # TEST Server http://testing.postman.zaya.in
+    POSTMAN_HOST = '<zaya-postman-service-hostname>'
+    POSTMAN_EMAIL_ROUTE = '/api/v1/services/email/'
+    POSTMAN_SMS_ROUTE = '/api/v1/services/email/'
+    POSTMAN_AUTHKEY = '<your-postman-auth-key>' 
 
 How to use EmailBackend:
+
 .. code-block:: python
 
-from django.core.mail import send_mail
-
-send_mail(
-    'Subject here',
-    'Here is the message.',
-    'from@example.com',
-    ['to@example.com'],
-    fail_silently=False,
-)
+    from django.core.mail import send_mail
+    
+    send_mail(
+        'Subject here',
+        'Here is the message.',
+        'from@example.com',
+        ['to@example.com'],
+        fail_silently=False,
+    )
 
 How to use SMSBackend:
 
-from postman import sms_backend
-sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>)
+.. code-block:: python
 
-# PHONE_NUMBER : accepts <country_code>
-
-Optional Parameters
-sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>, <SENDER_ID>, <ROUTER>)
-
-# SENDER : SMSProvider's SENDER_ID
-# ROUTER : PROMOTIONAL or TRANSACTIONAL
-
+    from postman import sms_backend
+    sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>)
+    
+    # PHONE_NUMBER : accepts <country_code>
+    
+    Optional Parameters
+    # SENDER : SMSProvider's SENDER_ID
+    # ROUTER : PROMOTIONAL or TRANSACTIONAL
+    
+    sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>, <SENDER_ID>, <ROUTER>)
+    
 Features
 --------
 
 * overrides django's send_mail and uses zaya's POSTMAN service to send email
 * use POSTMAN for send messages
-
-Running Tests
--------------
-
-Does the code actually work?
-
-::
-
-    source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install tox
-    (myenv) $ tox
 
 Credits
 -------
