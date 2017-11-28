@@ -29,10 +29,10 @@ class SMSBackend(BaseBackend):
     def send_messages(self, reciever, message, sender_id=None, route=None):
         postman_body = {
             "receiver": {
-                "contact": "7709071711"
+                "contact": reciever
             },
             "data": {
-                "body": "Test SMS"
+                "body": message
             },
             "extras": {
                 "sender_id": sender_id if sender_id is not None else 'ENGDUN',
