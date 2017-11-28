@@ -1,6 +1,9 @@
+import re
 import requests
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
+
 from .backends import BaseBackend
 
 
@@ -26,10 +29,18 @@ class SMSBackend(BaseBackend):
             return True
         return False
 
+    def validate_phone_number(value):
+        if not re.match('\d{10}', value):
+            raise ValidationError(u'%s is not valid phone number' % value)
+
     def send_messages(self, reciever, message, sender_id=None, route=None):
+
+        # validate phone number
+        self.validate_phone_number(reciever)
+
         postman_body = {
             "receiver": {
-                "contact": reciever
+                "contact": str(reciever)
             },
             "data": {
                 "body": message
@@ -42,4 +53,4 @@ class SMSBackend(BaseBackend):
 
         # send message to postman
         response = self._send_msg_to_postman(postman_body)
-        print('SUCCESS' if response else 'FAILED')
+        return print('SUCCESS' if response else 'FAILED')
