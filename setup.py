@@ -56,7 +56,9 @@ setup(
         'postman',
     ],
     include_package_data=True,
-    install_requires=[],
+    install_requires=[
+        'django>=1.9'
+    ],
     license="BSD",
     zip_safe=False,
     keywords='django-postman',

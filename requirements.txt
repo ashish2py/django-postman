@@ -1,2 +1,2 @@
-
+django==1.0
 # Additional requirements go here
