@@ -29,7 +29,7 @@ class SMSBackend(BaseBackend):
             return True
         return False
 
-    def validate_phone_number(value):
+    def validate_phone_number(self, value):
         if not re.match('\d{10}', value):
             raise ValidationError(u'%s is not valid phone number' % value)
 
