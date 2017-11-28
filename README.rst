@@ -38,7 +38,6 @@ Change your `settings.py`:
     # POSTMAIL_EMAILER
     EMAIL_BACKEND = 'postman.email_service.EmailBackend'
     
-    # TEST Server http://testing.postman.zaya.in
     POSTMAN_HOST = '<zaya-postman-service-hostname>'
     POSTMAN_EMAIL_ROUTE = '/api/v1/services/email/'
     POSTMAN_SMS_ROUTE = '/api/v1/services/email/'
