@@ -72,11 +72,14 @@ How to use SMSBackend
     
     sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>, <SENDER_ID>, <ROUTER>)
 
-Response sample
+
+Response Sample
 
 .. code-block:: python
+
     (True, {'detail': 'success'})
-    
+
+
 Features
 --------
 
