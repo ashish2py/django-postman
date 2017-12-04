@@ -26,8 +26,8 @@ class SMSBackend(BaseBackend):
     def _send_msg_to_postman(self, postman_body):
         request = requests.post(self.sms_route, json=postman_body, headers=self.headers)
         if request.status_code == 201:
-            return True
-        return False
+            return True, request.json()
+        return False, request.json()
 
     def validate_phone_number(self, value):
         if not re.match('\d{10}', value):
@@ -53,5 +53,4 @@ class SMSBackend(BaseBackend):
         }
 
         # send message to postman
-        response = self._send_msg_to_postman(postman_body)
-        return print('SUCCESS' if response else 'FAILED')
+        return self._send_msg_to_postman(postman_body)

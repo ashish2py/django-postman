@@ -41,8 +41,8 @@ class EmailBackend(BaseEmailBackend):
     def _send_email_to_postman(self, postman_body):
         request = requests.post(self.email_route, json=postman_body, headers=self.headers)
         if request.status_code == 201:
-            return True
-        return False
+            return True, request.json()
+        return False, request.json()
 
     def _send(self, email_message):
         ''' Helper method that does the actual email sending '''
