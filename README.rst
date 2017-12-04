@@ -17,7 +17,7 @@ Service for email and sms
 Quickstart
 ----------
 
-Install django postman::
+Install django postman
 
     pip install git+https://github.com/ashish2py/django-postman
 
@@ -31,7 +31,7 @@ Add it to your `INSTALLED_APPS`:
         ...
     )
 
-Change your `settings.py`:
+Change your `settings.py`
 
 .. code-block:: python
 
@@ -57,7 +57,7 @@ How to use EmailBackend:
         fail_silently=False,
     )
 
-How to use SMSBackend:
+How to use SMSBackend
 
 .. code-block:: python
 
@@ -71,6 +71,11 @@ How to use SMSBackend:
     # ROUTER : PROMOTIONAL or TRANSACTIONAL
     
     sms_backend.send_messages(<PHONE_NUMBER>, <MESSAGE>, <SENDER_ID>, <ROUTER>)
+
+Response sample
+
+.. code-block:: python
+    (True, {'detail': 'success'})
     
 Features
 --------
